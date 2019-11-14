@@ -4,8 +4,8 @@ services:
     image: mongo:3
   elasticsearch:
     image: elasticsearch:6.8.2
-    volumes:
-      - /data/elasticsearch:/usr/share/elasticsearch
+    #volumes:
+    #  - /data/elasticsearch:/usr/share/elasticsearch
     environment:
       - http.host=0.0.0.0
       - transport.host=localhost
@@ -17,23 +17,22 @@ services:
     mem_limit: 4g
   kibana:
     image: kibana:6.8.2
-    volumes:
-      - /data/kibana:/usr/share/kibana
+    #volumes:
+    #  - /data/kibana:/usr/share/kibana
     links:
       - elasticsearch
     ports:
       - 5601:5601
   graylog:
     image: graylog/graylog:3.1
-    #如需映射配置文件等文件，二次启动打开这个配置
-     #volumes:
-     # - /data/graylog:/usr/share/graylog
+    #volumes:
+    #  - /data/graylog:/usr/share/graylog
     environment:
       # CHANGE ME (must be at least 16 characters)!
       - GRAYLOG_PASSWORD_SECRET=i2KL7zV2ck0Z4AOe
       # Password: gahw*fchN9m8
       - GRAYLOG_ROOT_PASSWORD_SHA2=f3566a0548cac4bafa4e2f8bafab6850c8856c6bcd0cee372f45221673feaa5d
-      - GRAYLOG_HTTP_EXTERNAL_URI=http://10.248.253.166:9000/
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://10.248.253.70:9000/
       - GRAYLOG_ELASTICSEARCH_HOSTS=http://elasticsearch:9200/
       - GRAYLOG_ROOT_TIMEZONE=Asia/Shanghai
     links:
