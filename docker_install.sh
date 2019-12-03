@@ -15,3 +15,5 @@ yum makecache fast
 #安装docker-ce和docker-compose
 yum install docker-ce.x86_64 3:19.03.5-3.el7 -y
 yum install docker-compose-1.18.0-4.el7.noarch -y
+
+systemctl restart docker.service
